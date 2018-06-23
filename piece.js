@@ -23,6 +23,7 @@ class Piece {
 
     rotation() {
         this.transpose()
+        this.rotate90Degrees()
         this.updatePiecePosition()
     }
 
@@ -31,6 +32,13 @@ class Piece {
         let aux = Array.from(new Array(dimension), e => Array.from(new Array(dimension), x => null) )        
         this.shape.forEach( (x, i) => x.forEach( (e, j) => aux [j][i] = e))
         this.shape = aux
+    }
+
+    rotate90Degrees() {
+        this.shape.reverse()[0].map((column, index) => 
+            this.shape.map(row => row[index])
+          )
+        console.log(this.shape)
     }
 
     updatePiecePosition() {

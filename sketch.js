@@ -2,7 +2,7 @@ let currentPiece
 
 function setup() {
     createCanvas(canvasWidth, canvasHeight)
-    currentPiece = new Piece(piece_L, width / 2, boxDimension, purpleColor)
+    currentPiece = new Piece(piece_T, width / 2, boxDimension, purpleColor)
 }
 
 function draw() {
