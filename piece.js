@@ -18,7 +18,13 @@ class Piece {
     show() {
         let actualColor = this.color
         let dimension = this.shape.length
+        this.updatePiecePosition()
         this.shape.forEach( x => x.filter( j => j != null).forEach(box => box.show()))
+    }
+
+    canCollideSides(direction) {
+        return direction === LEFT_ARROW ? this.shape.reduce( (z, x) => z.concat(x.filter(col => col != null).filter(box => box.x === 0)), []).length > 0
+                                        : this.shape.reduce( (z, x) => z.concat(x.filter(col => col != null).filter(box => box.x + boxDimension === width)), []).length > 0
     }
 
     rotation() {
@@ -38,7 +44,6 @@ class Piece {
         this.shape.reverse()[0].map((column, index) => 
             this.shape.map(row => row[index])
           )
-        console.log(this.shape)
     }
 
     updatePiecePosition() {
