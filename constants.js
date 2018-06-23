@@ -1,7 +1,7 @@
 const canvasWidth = 600
 const canvasHeight = 600
 const backgroundColor = 50
-const boxDimension = 60
+const boxDimension = 30
 
 let piece_O = [ [1, 1], 
                 [1, 1] 

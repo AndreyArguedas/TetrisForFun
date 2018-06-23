@@ -1,11 +1,17 @@
-let p
+let currentPiece
+
 function setup() {
     createCanvas(canvasWidth, canvasHeight)
-    p = new Piece(piece_S, width / 2, height / 2, purpleColor)
+    currentPiece = new Piece(piece_L, width / 2, boxDimension, purpleColor)
 }
 
 function draw() {
     background(backgroundColor)
-    p.show()
+    currentPiece.show()
 }
+
+function keyPressed() {
+    if (keyCode === UP_ARROW) 
+        currentPiece.rotation()
+  }
 
