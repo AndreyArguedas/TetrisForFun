@@ -8,7 +8,6 @@ class Piece {
     }
 
     fillPiece(pieceLength) {
-        console.log(this.color)
         return Array.from(new Array(pieceLength), (x, i) => 
             Array.from(new Array(pieceLength), (x, j) =>  
             this.originalShape[i][j] === 1 ? new Box(this.x + j * boxDimension, this.y + i * boxDimension, boxDimension, boxDimension, this.color) : null)

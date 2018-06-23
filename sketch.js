@@ -18,9 +18,18 @@ function keyPressed() {
         currentPiece.x += boxDimension
     if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW)) 
         currentPiece.x -= boxDimension
+    if (keyCode === DOWN_ARROW) 
+        applyGravity()
 }
 
 function applyGravity() {
     currentPiece.y += boxDimension
+    if(currentPiece.y >= height)
+        generateNewPiece()
+}
+
+function generateNewPiece() {
+    let index = Math.floor((Math.random() * 7))
+    currentPiece = new Piece(pieces[index], width / 2, boxDimension, purpleColor)
 }
 

@@ -39,6 +39,8 @@ let piece_T = [ [0, 0, 0],
                 [0, 1, 0]
               ]
 
+let pieces = [piece_O, piece_I, piece_S, piece_Z, piece_L, piece_J, piece_T]
+
 
 /* Colors */
 
