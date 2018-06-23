@@ -1,9 +1,11 @@
+let p
 function setup() {
-    createCanvas(600, 600)
-    angleMode(DEGREES)
+    createCanvas(canvasWidth, canvasHeight)
+    p = new Piece(piece_S, width / 2, height / 2, purpleColor)
 }
 
 function draw() {
-    background(50)
+    background(backgroundColor)
+    p.show()
 }
 
