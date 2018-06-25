@@ -1,17 +1,20 @@
 let currentPiece
 let platform
+let points
 
 function setup() {
     createCanvas(canvasWidth, canvasHeight)
     generateNewPiece()
     platform = new Platform()
     setInterval( () =>  applyGravity() , timeInterval)
+    points = startingPoints
 }
 
 function draw() {
     background(backgroundColor)
     platform.show()
     currentPiece.show()
+    drawText(points)
 }
 
 function keyPressed() {
@@ -30,7 +33,8 @@ let applyGravity = () => {
         currentPiece.y += boxDimension
     } else {
         platform.placePiece(currentPiece)
-        generateNewPiece()
+        platform.cleanFilledRows()
+        currentPiece.canCollide(box => box.y === 0) ? setup() :  generateNewPiece() //Colliding on top of the screen
     }
 }
 
@@ -38,5 +42,12 @@ let generateNewPiece = () => {
     let index = Math.floor((Math.random() * pieces.length))
     let indexColor = Math.floor((Math.random() * colors.length))
     currentPiece = new Piece(pieces[index], width / 2, -boxDimension * marginPieceBeginning, colors[indexColor])
+}
+
+let drawText = (txt) => {
+    textSize(16)
+    textAlign(RIGHT)
+    fill(255, 255, 255)
+    text(txt, canvasWidth, boxDimension)
 }
 

@@ -21,12 +21,7 @@ class Piece {
 
     canCollide(collision) {
         return this.shape.reduce( (z, x) => z.concat(x.filter(col => col != null).filter(box => collision(box))), []).length > 0
-         //: this.shape.reduce( (z, x) => z.concat(x.filter(col => col != null).filter(box => box.x + boxDimension === width)), []).length > 0
     }
-
-    /*canCollideBottom() {
-        return this.shape.reduce( (z, x) => z.concat(x.filter(col => col != null).filter(box => box.y + boxDimension === height)), []).length > 0
-    }*/
 
     rotation() {
         this.transpose()

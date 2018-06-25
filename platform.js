@@ -9,7 +9,7 @@ class Platform {
     }
 
     show() {
-        this.platform.forEach( (row, i) => row.forEach( (box, j) => box === null ? this.showEmptyBox(i, j) : box.show()))
+        this.platform.forEach( (row, i) => row.forEach( (box, j) => box === null ? this.showEmptyBox() : box.show()))
     }
 
     generatePlatform() {
@@ -18,14 +18,14 @@ class Platform {
                         Array.from(new Array(platformLength), col => null))
     }
 
-    showEmptyBox(row, col) {
+    showEmptyBox() {
         let {r , g , b} = this.color
         stroke(r, g, b)
         fill(backgroundColor)
     }
 
     placePiece(piece) {
-        piece.shape.reduce( (z, x) => z.concat(x.filter(col => col != null)), []).forEach( box => this.platform[box.x / boxDimension][box.y / boxDimension] = box)
+        piece.shape.reduce( (z, x) => z.concat(x.filter(col => col != null)), []).forEach( box => this.platform[box.y / boxDimension][box.x / boxDimension] = box)
     }
 
     piecesColliding(piece, collision = (rect1, rect2) => rectCollision(rect1, rect2), applyToBoxes = box => box) {
@@ -33,5 +33,9 @@ class Platform {
         boxes.forEach(box => applyToBoxes(box))
         let piecesInPlatform = this.platform.reduce( (z, x) => z.concat(x.filter(col => col != null)), [])
         return boxes.reduce( (z, box) => piecesInPlatform.filter( p => collision(box, p)).length > 0 ? true : z , false)
+    }
+
+    cleanFilledRows() {
+        this.platform.forEach( (row, i) => { if(row.every( box => box != null)) { row.forEach( (element, j) =>  this.platform[i][j] = null)} })
     }
 }
