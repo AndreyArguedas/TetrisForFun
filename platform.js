@@ -34,4 +34,11 @@ class Platform {
         let piecesInPlatform = this.platform.reduce( (z, x) => z.concat(x.filter(col => col != null)), [])
         return boxes.reduce( (z, box) => piecesInPlatform.filter( p => fun(box, p)).length > 0 ? true : z , false)
     }
+
+    piecesCouldCollide(piece, fun = box => box) {
+        let boxes = piece.shape.reduce( (z, x) => z.concat(x.filter(col => col != null)), [])
+        boxes.forEach(box => fun(box))
+        let piecesInPlatform = this.platform.reduce( (z, x) => z.concat(x.filter(col => col != null)), [])
+        return boxes.reduce( (z, box) => piecesInPlatform.filter( p => rectCollision(box, p)).length > 0 ? true : z , false)
+    }
 }

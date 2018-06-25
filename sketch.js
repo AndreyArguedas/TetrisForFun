@@ -17,9 +17,9 @@ function draw() {
 function keyPressed() {
     if (keyCode === UP_ARROW) 
         currentPiece.rotation()
-    if (keyCode === RIGHT_ARROW && !currentPiece.canCollideSides(RIGHT_ARROW)) 
+    if (keyCode === RIGHT_ARROW && !currentPiece.canCollideSides(RIGHT_ARROW) && !platform.piecesCouldCollide(currentPiece, (box) => box.x += boxDimension)) 
         currentPiece.x += boxDimension
-    if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW) ) 
+    if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW) && !platform.piecesCouldCollide(currentPiece, (box) => box.x -= boxDimension)) 
         currentPiece.x -= boxDimension
     if (keyCode === DOWN_ARROW) 
         applyGravity()
@@ -37,6 +37,6 @@ let applyGravity = () => {
 let generateNewPiece = () => {
     let index = Math.floor((Math.random() * pieces.length))
     let indexColor = Math.floor((Math.random() * colors.length))
-    currentPiece = new Piece(pieces[index], width / 2, boxDimension, colors[indexColor])
+    currentPiece = new Piece(pieces[index], width / 2, -boxDimension, colors[indexColor])
 }
 
