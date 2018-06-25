@@ -17,9 +17,9 @@ function draw() {
 function keyPressed() {
     if (keyCode === UP_ARROW) 
         currentPiece.rotation()
-    if (keyCode === RIGHT_ARROW && !currentPiece.canCollideSides(RIGHT_ARROW) && !platform.piecesCouldCollide(currentPiece, (box) => box.x += boxDimension)) 
+    if (keyCode === RIGHT_ARROW && !currentPiece.canCollideSides(RIGHT_ARROW) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x += boxDimension)) 
         currentPiece.x += boxDimension
-    if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW) && !platform.piecesCouldCollide(currentPiece, (box) => box.x -= boxDimension)) 
+    if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x -= boxDimension)) 
         currentPiece.x -= boxDimension
     if (keyCode === DOWN_ARROW) 
         applyGravity()
