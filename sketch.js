@@ -17,16 +17,16 @@ function draw() {
 function keyPressed() {
     if (keyCode === UP_ARROW) 
         currentPiece.rotation()
-    if (keyCode === RIGHT_ARROW && !currentPiece.canCollideSides(RIGHT_ARROW) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x += boxDimension)) 
+    if (keyCode === RIGHT_ARROW && !currentPiece.canCollide(box => box.x + boxDimension === width) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x += boxDimension)) 
         currentPiece.x += boxDimension
-    if (keyCode === LEFT_ARROW && !currentPiece.canCollideSides(LEFT_ARROW) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x -= boxDimension)) 
+    if (keyCode === LEFT_ARROW && !currentPiece.canCollide(box => box.x === 0) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x -= boxDimension)) 
         currentPiece.x -= boxDimension
     if (keyCode === DOWN_ARROW) 
         applyGravity()
 }
 
 let applyGravity = () => {
-    if(!currentPiece.canCollideBottom() && !platform.piecesColliding(currentPiece)){
+    if(!currentPiece.canCollide(box => box.y + boxDimension === height) && !platform.piecesColliding(currentPiece)){
         currentPiece.y += boxDimension
     } else {
         platform.placePiece(currentPiece)
@@ -37,6 +37,6 @@ let applyGravity = () => {
 let generateNewPiece = () => {
     let index = Math.floor((Math.random() * pieces.length))
     let indexColor = Math.floor((Math.random() * colors.length))
-    currentPiece = new Piece(pieces[index], width / 2, -boxDimension, colors[indexColor])
+    currentPiece = new Piece(pieces[index], width / 2, -boxDimension * marginPieceBeginning, colors[indexColor])
 }
 

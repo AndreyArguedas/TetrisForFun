@@ -22,7 +22,6 @@ class Platform {
         let {r , g , b} = this.color
         stroke(r, g, b)
         fill(backgroundColor)
-        rect(row * this.dimension, col * this.dimension, this.dimension, this.dimension)
     }
 
     placePiece(piece) {
