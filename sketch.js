@@ -1,13 +1,16 @@
 let currentPiece
+let platform
 
 function setup() {
     createCanvas(canvasWidth, canvasHeight)
-    currentPiece = new Piece(piece_I, width / 2, boxDimension, purpleColor)
+    generateNewPiece()
+    platform = new Platform()
     setInterval( () =>  applyGravity() , timeInterval)
 }
 
 function draw() {
     background(backgroundColor)
+    platform.show()
     currentPiece.show()
 }
 
@@ -22,13 +25,16 @@ function keyPressed() {
         applyGravity()
 }
 
-function applyGravity() {
-    currentPiece.y += boxDimension
-    if(currentPiece.y >= height)
+let applyGravity = () => {
+    if(!currentPiece.canCollideBottom()){
+        currentPiece.y += boxDimension
+    } else {
+        platform.placePiece(currentPiece)
         generateNewPiece()
+    }
 }
 
-function generateNewPiece() {
+let generateNewPiece = () => {
     let index = Math.floor((Math.random() * 7))
     currentPiece = new Piece(pieces[index], width / 2, boxDimension, purpleColor)
 }
