@@ -26,7 +26,7 @@ function keyPressed() {
 }
 
 let applyGravity = () => {
-    if(!currentPiece.canCollideBottom()){
+    if(!currentPiece.canCollideBottom() && !platform.piecesColliding(currentPiece)){
         currentPiece.y += boxDimension
     } else {
         platform.placePiece(currentPiece)

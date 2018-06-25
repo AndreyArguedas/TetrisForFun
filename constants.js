@@ -3,6 +3,7 @@ const canvasHeight = 600
 const backgroundColor = 50
 const boxDimension = 30
 const timeInterval = 500
+const collisionMargin = 1
 
 let piece_O = [ [1, 1], 
                 [1, 1] 
