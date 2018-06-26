@@ -43,7 +43,6 @@ class Piece {
     }
 
     updatePiecePosition() {
-        let dimension = this.shape.length
         this.shape.forEach( (x, i) => x.forEach( (e, j) => { if(e) { e.x = this.x + j * boxDimension; e.y = this.y + i * boxDimension; }}))
     }
 }

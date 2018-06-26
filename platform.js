@@ -36,6 +36,13 @@ class Platform {
     }
 
     cleanFilledRows() {
+        let preBoxesCount = this.countBoxes()
         this.platform.forEach( (row, i) => { if(row.every( box => box != null)) { row.forEach( (element, j) =>  this.platform[i][j] = null)} })
+        let postBoxesCount = this.countBoxes()
+        preBoxesCount != postBoxesCount ? points += preBoxesCount - postBoxesCount : points = points
+    }
+
+    countBoxes() {
+        return this.platform.reduce( (z, row) => z += row.filter( element => element != null).length, 0)
     }
 }

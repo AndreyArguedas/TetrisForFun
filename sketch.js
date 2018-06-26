@@ -22,7 +22,7 @@ function keyPressed() {
         currentPiece.rotation()
     if (keyCode === RIGHT_ARROW && !currentPiece.canCollide(box => box.x + boxDimension === width) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x += boxDimension)) 
         currentPiece.x += boxDimension
-    if (keyCode === LEFT_ARROW && !currentPiece.canCollide(box => box.x === 0) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x -= boxDimension)) 
+    if (keyCode === LEFT_ARROW && !currentPiece.canCollide(box => box.x === begginingPoint) && !platform.piecesColliding(currentPiece, (rect1, rect2) => rectCollision(rect1, rect2), (box) => box.x -= boxDimension)) 
         currentPiece.x -= boxDimension
     if (keyCode === DOWN_ARROW) 
         applyGravity()
@@ -32,9 +32,7 @@ let applyGravity = () => {
     if(!currentPiece.canCollide(box => box.y + boxDimension === height) && !platform.piecesColliding(currentPiece)){
         currentPiece.y += boxDimension
     } else {
-        platform.placePiece(currentPiece)
-        platform.cleanFilledRows()
-        currentPiece.canCollide(box => box.y === 0) ? setup() :  generateNewPiece() //Colliding on top of the screen
+        currentPiece.canCollide(box => box.y === begginingPoint) ? setup() : platform.placePiece(currentPiece); platform.cleanFilledRows(); generateNewPiece() //Colliding on top of the screen
     }
 }
 

@@ -6,6 +6,7 @@ const timeInterval = 500
 const collisionMargin = 1
 const marginPieceBeginning = 2
 const startingPoints = 0
+const begginingPoint = 0
 
 const piece_O = [ [1, 1], 
                 [1, 1] 
