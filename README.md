@@ -13,6 +13,13 @@ Deploy to heroku:
 
 3- Type heroku create //You need to do this just once
 
-4- git push hero your_branch
+4- git push heroku your_branch:master //If using master just do git push heroku master
+
+5- heroku ps:scale web=1
+
+6- heroku open
+
+
+Final result https://radiant-shore-89335.herokuapp.com/
 
 
