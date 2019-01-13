@@ -11,4 +11,8 @@ Deploy to heroku:
 
 2- In the cmd type "heroku login" and login
 
-3- heroku create
+3- Type heroku create //You need to do this just once
+
+4- git push hero your_branch
+
+
